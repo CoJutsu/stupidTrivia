@@ -6,7 +6,7 @@ const love = document.querySelector(".yeah");
 const hate = document.querySelector(".nope");
 const wrapper = document.querySelector(".wrapper");
 const desire = document.querySelector("#desire");
-let choice = document.querySelector(".choices");
+const choice = document.querySelector(".choices");
 const fart = new Audio("./sounds/fart.mp3");
 const good = new Audio("./sounds/good.mp3");
 const letsGo = new Audio("./sounds/lets_go.mp3");
@@ -77,23 +77,33 @@ async function getData() {
 getData();
 
 love.addEventListener("click", () => {
+  const creator = document.querySelector("#creator");
   letsGo.play();
   wrapper.style.display = "none";
   document.body.style.backgroundColor = "black";
   document.body.classList.add("center");
+  creator.style.display = "block";
   setTimeout(() => {
     document.body.classList.add("stage");
-    desire.innerText = "💖";
+    desire.style.fontSize = "5rem";
+    desire.innerText = "Thanks for playing";
+    setTimeout(() => {
+      desire.innerText = "💖";
+      desire.style.fontSize = "28rem";
+    }, 2000);
   }, 3000);
   setInterval(() => {
+    document.body.style.display = "none";
     location.reload(true);
   }, 10000);
 });
 
 hate.addEventListener("click", () => {
   const remove = document.querySelector("#nope");
+  const reloader = document.querySelector("#reloader");
   gone.play();
   setTimeout(() => {
+    reloader.style.visibility = "hidden";
     remove.style.display = "none";
   }, 200);
 });
